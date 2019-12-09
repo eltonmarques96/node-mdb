@@ -3,11 +3,11 @@ var stream = require("stream");
 var util = require("util");
 var concat = require("concat-stream");
 
-function Mdb(file) {
+function Mdb(file, tableDelimiter) {
   stream.Stream.call(this);
   this.writable = true;
   this.file = file;
-  // this.tableDelimiter = ",";
+  this.tableDelimiter = tableDelimiter;
 }
 
 util.inherits(Mdb, stream.Stream);
@@ -34,9 +34,9 @@ Mdb.prototype.toSQL = function(table, cb) {
   );
 };
 
-Mdb.prototype.tables = function(cb, tableDelimiter) {
+Mdb.prototype.tables = function(cb) {
   var self = this;
-  var cmd = spawn("mdb-tables", ["-d" + tableDelimiter, this.file]);
+  var cmd = spawn("mdb-tables", ["-d" + this.tableDelimiter, this.file]);
   cmd.stdout.pipe(
     concat(function(err, out) {
       if (err) return cb(err.toString());
@@ -44,7 +44,7 @@ Mdb.prototype.tables = function(cb, tableDelimiter) {
       var tables = out
         .toString()
         .replace(/,\n$/, "")
-        .split(tableDelimiter);
+        .split(self.tableDelimiter);
       cb(false, tables);
     })
   );
