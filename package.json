@@ -1,14 +1,14 @@
-{ "name" : "mdb"
-, "description" : "use mdbtools from node to convert MS Access databases (.mdb and .accdb) to CSV"
+{ "name" : "mdb2"
+, "description" : "[FORK - mdb] use mdbtools from node to convert MS Access databases (.mdb and .accdb) to CSV"
 , "tags" : ["access", "msaccess", "accdb", "mdb", "msft", "microsoft", "csv"]
 , "version" : "0.1.0"
-, "author" : "Max Ogden <max@maxogden.com>"
+, "author" : "Elton Marques <elton1314@hotmail.com>"
 , "repository" :
   { "type" : "git"
-  , "url" : "http://github.com/maxogden/node-mdb.git"
+  , "url" : "https://github.com/eltonmarques96/node-mdb"
   }
 , "bugs" :
-  { "url" : "http://github.com/maxogden/node-mdb/issues" }
+  { "url" : "https://github.com/eltonmarques96/node-mdb" }
 , "engines" : ["node >= 0.8.0"]
 , "dependencies": {
     "concat-stream": "0.0.7"
